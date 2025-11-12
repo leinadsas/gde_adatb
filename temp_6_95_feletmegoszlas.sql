@@ -6,7 +6,7 @@ SELECT
             WHEN c.temp_6 IS NOT NULL AND c.temp_6 > 95 AND c.temp_6 < 120
             THEN 1 
             ELSE 0 
-        END) AS meresek_95fok_felett,
+        END) AS meresek_95fok_120fok_között,
 
     ROUND(
         100.0 * SUM(CASE 
