@@ -43,7 +43,7 @@ def InserCoolSystemVersion2():
     
         nyers_huto_adatok_csv = df_huto.to_dict('records')
 
-        print("Hűtőpanelek adatok sikeresen beolvasva és átnevezve.")
+        print("Hűtőpanelek adatok sikeresen beolvasva és átnevezve.\n\n")
 
     except FileNotFoundError:
         print("Hiba: 'Hűtőpanelek.csv' nem található. Ellenőrizd az útvonalat!")
