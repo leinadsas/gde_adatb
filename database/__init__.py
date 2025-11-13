@@ -1,0 +1,1 @@
+# Ez a fájl jelzi, hogy a 'database' egy Python package
