@@ -4,12 +4,23 @@ conn = sqlite3.connect('Kemence.sql')
 cursor = conn.cursor()
 
 try:
-    # 1. Törli az Olvasztasok (rations) táblából a célsorokat.
+    
+    cursor.execute('BEGIN TRANSACTION; ')
+
+    # Megnézzük, mely ration_id-k fognak törlődni
     cursor.execute('''
-                   DELETE
-                   FROM rations
-                   WHERE ration_id < 14;
-                   ''')
+    SELECT ration_id 
+    FROM rations 
+    WHERE ration_id NOT IN (SELECT DISTINCT ration_id FROM cool_system)
+    ORDER BY ration_id;''')
+
+    # 1. Törli az Olvasztasok (rations) táblából a célsorokat.
+
+    cursor.execute('''
+    DELETE FROM rations
+    WHERE ration_id NOT IN (
+                            SELECT DISTINCT ration_id 
+                            FROM cool_system);''')
 
 
     conn.commit()
