@@ -9,9 +9,10 @@ def Transaction():
     try:
         # 1. Törli az Olvasztasok (rations) táblából a célsorokat.
         cursor.execute('''
-                    DELETE
-                    FROM rations
-                    WHERE ration_id < 14;
+                    DELETE FROM rations
+                    WHERE ration_id NOT IN(
+                        SELECT DISTINCT ration_id FROM cool_system
+                    )
                     ''')
     
     
